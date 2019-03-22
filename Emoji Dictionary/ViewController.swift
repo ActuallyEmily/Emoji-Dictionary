@@ -8,13 +8,29 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var EmojiTableView: UITableView!
+    
+    var emojiDic = ["🍕","🍔","🍟","🌭","🍗","🌯","🍝","🥨","🧀","🍆","🍌","🥦","🌮","🍦","🍰","🧁","🍿","☕️","🥜","🍪"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        EmojiTableView.dataSource = self
+        EmojiTableView.delegate = self
     }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return emojiDic.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = emojiDic[indexPath.row]
+        return cell
+    }
 
 }
 
